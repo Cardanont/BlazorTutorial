@@ -49,7 +49,7 @@ namespace EmployeeManagement.Web.Pages
                 FirstName = "Kendra",
                 LastName = "Pothard",
                 Email = "KendraP@pragmthech.com",
-                DateOfBirth = new DateTime(1977, 2, 4),
+                DateOfBirth = new DateTime(1995, 2, 4),
                 Gender = Gender.Female,
                 DepartmentId = 3,
                 PhotoPath = "images/kendra.png"
