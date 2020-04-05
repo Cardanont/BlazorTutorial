@@ -16,9 +16,11 @@ namespace EmployeeManagement.Api.Models
             this.appDbContext = appDbContext;
         }
 
-        public Task<Employee> AddEmployee(Employee employee)
+        public async Task<Employee> AddEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            var result = await appDbContext.Employees.AddAsync(employee);
+            await appDbContext.SaveChangesAsync();
+            return result.Entity;
         }
 
         public void DeleteEmployee(int employeeId)
