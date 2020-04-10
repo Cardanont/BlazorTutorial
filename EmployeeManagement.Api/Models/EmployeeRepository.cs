@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,15 @@ namespace EmployeeManagement.Api.Models
             return result.Entity;
         }
 
-        public void DeleteEmployee(int employeeId)
+        public async void DeleteEmployee(int employeeId)
         {
-            throw new NotImplementedException();
+            var result = await appDbContext.Employees
+                .FirstOrDefaultAsync(e => e.EmployeeId == employeeId);
+            if(result != null)
+            {
+                appDbContext.Employees.Remove(result);
+                await appDbContext.SaveChangesAsync();
+            }
         }
 
         public Task<Employee> GetEmployee(int employeeId)
