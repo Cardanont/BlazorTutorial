@@ -46,9 +46,27 @@ namespace EmployeeManagement.Api.Models
             return await appDbContext.Employees.ToListAsync();
         }
 
-        public Task<Employee> UpdateEmployee(Employee employee)
+        public async Task<Employee> UpdateEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            var result = await appDbContext.Employees
+                .FirstOrDefaultAsync(e => e.EmployeeId == employee.EmployeeId);
+
+            if(result != null)
+            {
+                result.FirstName = employee.FirstName;
+                result.LastName = employee.LastName;
+                result.Email = employee.Email;
+                result.DateOfBirth = employee.DateOfBirth;
+                result.Gender = employee.Gender;
+                result.DepartmentId = employee.DepartmentId;
+                result.PhotoPath = employee.PhotoPath;
+
+                await appDbContext.SaveChangesAsync();
+
+                return result;
+            }
+
+            return null;
         }
     }
 }
