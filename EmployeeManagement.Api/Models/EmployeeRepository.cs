@@ -35,14 +35,15 @@ namespace EmployeeManagement.Api.Models
             }
         }
 
-        public Task<Employee> GetEmployee(int employeeId)
+        public async Task<Employee> GetEmployee(int employeeId)
         {
-            throw new NotImplementedException();
+            return await appDbContext.Employees
+                .FirstOrDefaultAsync(e => e.EmployeeId == employeeId);
         }
 
-        public Task<IEnumerable<Employee>> GetEmployees()
+        public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            throw new NotImplementedException();
+            return await appDbContext.Employees.ToListAsync();
         }
 
         public Task<Employee> UpdateEmployee(Employee employee)
