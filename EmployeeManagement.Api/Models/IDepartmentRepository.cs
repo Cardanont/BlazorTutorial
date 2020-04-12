@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Api.Models
 {
-    interface IDepartmentRepository
+    public interface IDepartmentRepository
     {
         IEnumerable<Department> GetDepartments();
         Department GetDepartment(int departmentId);
