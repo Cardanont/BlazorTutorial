@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Api.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,16 @@ namespace EmployeeManagement.Api.Controllers
         [HttpGet]
         public async Task<ActionResult> GetEmployees()
         {
-            return Ok(await employeeRepository.GetEmployees());
+            try
+            {
+                return Ok(await employeeRepository.GetEmployees());
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
         }
     }
 }
