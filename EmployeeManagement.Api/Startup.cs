@@ -23,8 +23,12 @@ namespace EmployeeManagement.Api
             services.AddDbContext<AppDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
 
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
             services.AddControllers();
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
