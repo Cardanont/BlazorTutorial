@@ -27,9 +27,9 @@ namespace EmployeeManagement.Web.Pages
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
         }
 
-        protected void Mouse_Move(MouseEventArgs e)
-        {
-            Coordinates = $"X = {e.ClientX} Y = {e.ClientY}";
-        }
+        //protected void Mouse_Move(MouseEventArgs e)
+        //{
+        //    Coordinates = $"X = {e.ClientX} Y = {e.ClientY}";
+        //}
     }
 }
