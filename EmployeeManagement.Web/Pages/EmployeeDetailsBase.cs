@@ -1,6 +1,7 @@
 ﻿using EmployeeManagement.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace EmployeeManagement.Web.Pages
     {
         public Employee Employee { get; set; } = new Employee();
 
+        protected string Coordinates { get; set; }
+
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
 
@@ -22,6 +25,11 @@ namespace EmployeeManagement.Web.Pages
         {
             Id = Id ?? "1";
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
+        }
+
+        protected void Mouse_Move(MouseEventArgs e)
+        {
+            Coordinates = $"X = {e.ClientX} Y = {e.ClientY}";
         }
     }
 }
