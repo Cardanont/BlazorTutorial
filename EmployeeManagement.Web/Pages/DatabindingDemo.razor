@@ -14,3 +14,19 @@
 <div>
     <b>Name :</b> <input value="@Name" />
 </div>
+
+<hr />
+
+<h3>Two Way Data Binding</h3>
+
+<div>
+    <b>Name: </b> <input value="@Name" @onchange="@(e => { Name = e.Value.ToString(); })" />
+</div>
+
+<div>
+    <b>Name: </b> <input @bind="Name" />
+</div>
+
+<div>
+    <b>Name: </b> <input @bind="Name" @bind:event="oninput" />
+</div>
