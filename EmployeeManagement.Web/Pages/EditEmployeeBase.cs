@@ -20,8 +20,6 @@ namespace EmployeeManagement.Web.Pages
         public IDepartmentService DepartmentService { get; set; }
 
         public List<Department> Departments { get; set; } = new List<Department>();
-        
-        public string DepartmentId { get; set; }
 
         [Parameter]
         public string Id { get; set; }
@@ -30,7 +28,6 @@ namespace EmployeeManagement.Web.Pages
         {
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
             Departments = (await DepartmentService.GetDepartments()).ToList();
-            DepartmentId = Employee.DepartmentId.ToString();
         }
     }
 }
