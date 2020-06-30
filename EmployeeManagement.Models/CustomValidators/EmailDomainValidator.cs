@@ -7,13 +7,16 @@ namespace EmployeeManagement.Models.CustomValidators
 {
     class EmailDomainValidator : ValidationAttribute
     {
+
+        public string AllowedDomain { get; set; }
+
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             string[] strings = value.ToString().Split('@');
-            if (strings[1].ToUpper() == "PRAGIMTECH.COM")
+            if (strings[1].ToUpper() == AllowedDomain.ToUpper())
                 return null;
 
-            return new ValidationResult("Domain must be PragimTech.com",
+            return new ValidationResult(ErrorMessage,
                 new[] { validationContext.MemberName });
         }
     }
